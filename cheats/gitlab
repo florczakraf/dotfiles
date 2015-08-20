@@ -1,0 +1,23 @@
+# cleaning merge requests
+$('div.diff-file:contains(No preview for this file type)').remove()
+
+# expand all
+$(".click-to-expand").each(function( index, element ) {element.click()})
+
+?expanded=1
+
+# css for wide pipeline view
+
+.ci-status-text{
+    max-width:110px;
+    text-overflow:ellipsis;
+}
+.pipeline-graph .build{
+    width:186px;
+}
+Element
+li.stage-column:nth-child(2) > div:nth-child(2) > ul:nth-child(1){
+    width:600px;
+
+# killing in runner review
+!336 https://gitlab.com/gitlab-org/gitlab-runner/merge_requests/336/diffs

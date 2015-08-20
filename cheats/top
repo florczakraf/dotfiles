@@ -1,0 +1,2 @@
+# summarize usage of user
+top -b -n 1 -u "florczak" | awk -v user="florczak" 'NR>7 { sum += $9; } END { print user, sum; }'

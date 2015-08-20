@@ -1,0 +1,17 @@
+[user]
+	email = florczak.raf@gmail.com
+	name = Rafał Florczak
+	signingkey = 426E55CE
+[push]
+	default = simple
+[alias]
+	pusch = push
+[gpg]
+	program = gpg
+[commit]
+	gpgSign = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

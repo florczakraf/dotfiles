@@ -1,0 +1,9 @@
+# Enable ascii escape characters interpreting, useful when piping grep or ag
+less -R
+
+# Toggle case sensitivity in search
+less -I
+-I inside app
+
+# To disable the terminal refresh when exiting
+less -X
