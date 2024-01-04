@@ -31,3 +31,6 @@ shopt -s globstar
 # cheat (https://github.com/chrisallenlane/cheat)
 export DEFAULT_CHEAT_DIR="${DOTFILES_PATH}/cheats"
 export CHEATCOLORS='true'
+
+# less
+export LESS="-ISR"

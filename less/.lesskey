@@ -1,2 +1,0 @@
-# use this file to generate .less file by lesskey which can be later read by less
-LESS = -I -S -R
