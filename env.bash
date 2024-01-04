@@ -34,3 +34,6 @@ export CHEATCOLORS='true'
 
 # less
 export LESS="-ISR"
+
+# local bash completions (it will look for `completions` dir in there)
+export BASH_COMPLETION_USER_DIR="${DOTFILES_PATH}"
