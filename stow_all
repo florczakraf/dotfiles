@@ -1,0 +1,4 @@
+#!/bin/bash
+set -Eeuo pipefail
+
+stow git inputrc pdb tmux vim
