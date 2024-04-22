@@ -1,5 +1,5 @@
 # custom path
-export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$DOTFILES_PATH/bin:$PATH"
 
 # force en numeric locale to ensure that a period is the decimal point
 export LC_NUMERIC='en_US.UTF-8'

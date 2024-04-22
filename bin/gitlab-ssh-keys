@@ -1,0 +1,21 @@
+#!/bin/bash
+set -Eeuo pipefail
+
+error=""
+
+for username in "$@"; do
+    if ! result=$(curl --fail --silent "https://gitlab.com/${username}.keys"); then
+        error+="Failed to get keys for: ${username} - Invalid response code\n"
+    elif [[ ! "$result" =~ \(gitlab.com\) ]]; then
+        error+="Failed to get keys for: ${username} - Malformed response: $result\n"
+    else
+        echo "$result"
+    fi
+done
+
+if [[ -n "$error" ]]; then
+    echo >&2
+    echo "Error:" >&2
+    echo -e "$error" >&2
+    exit 1
+fi
