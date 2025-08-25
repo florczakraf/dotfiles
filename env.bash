@@ -11,19 +11,44 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 export EDITOR='vim'
 
 # dir colors for ls (LS_COLORS)
-eval "$(dircolors -b)"
+if [ -x "$(which dircolors)" ]; then
+  eval "$(dircolors -b)"
+elif [ -x "$(which gdircolors)" ]; then
+  eval "$(gdircolors -b)"
+fi
 
 # bash completion
 if ! shopt -oq posix; then
+  if [ -f "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh" ]; then
+    . "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
+  fi
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
+  fi
+
+  if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
   fi
+
+  extra_dirs="/opt/homebrew/etc/bash_completion.d ${DOTFILES_PATH}/completions"
+
+  for d in $extra_dirs; do
+    if [ -d "$d" ]; then
+      for f in "$d"/* ; do
+        if [ -f "$f" ]; then
+          . "$f"
+        fi
+      done
+    fi
+  done
 fi
 
 # make less more friendly for non-text input files, see lesspipe(1)
-eval "$(lesspipe)"
+if [ -x "$(which lesspipe)" ]; then
+  eval "$(lesspipe)"
+elif [ -x "/opt/homebrew/bin/lesspipe.sh" ]; then
+  eval "$(/opt/homebrew/bin/lesspipe.sh)"
+fi
 
 # globstar
 shopt -s globstar
@@ -35,5 +60,4 @@ export CHEATCOLORS='true'
 # less
 export LESS="-ISR"
 
-# local bash completions (it will look for `completions` dir in there)
-export BASH_COMPLETION_USER_DIR="${DOTFILES_PATH}"
+export DOCKER_BUILDKIT=1
