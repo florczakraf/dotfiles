@@ -1,10 +1,11 @@
 #!/bin/bash
 set -Eeuo pipefail
 
+GITLAB_HOSTNAME=${GITLAB_HOSTNAME:-https://gitlab.com}
 error=""
 
 for username in "$@"; do
-    if ! result=$(curl --fail --silent "https://gitlab.com/${username}.keys"); then
+    if ! result=$(curl --fail --silent "${GITLAB_HOSTNAME}/${username}.keys"); then
         error+="Failed to get keys for: ${username} - Invalid response code\n"
     elif [[ ! "$result" =~ \(gitlab.com\) ]]; then
         error+="Failed to get keys for: ${username} - Malformed response: $result\n"
