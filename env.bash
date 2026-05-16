@@ -61,3 +61,10 @@ export CHEATCOLORS='true'
 export LESS="-ISR"
 
 export DOCKER_BUILDKIT=1
+
+# fixes missing function in tmux
+if [[ $(type -t "__vte_prompt_command") != function ]]; then
+    function __vte_prompt_command(){
+        return 0
+    }
+fi
