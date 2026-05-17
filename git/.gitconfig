@@ -8,6 +8,7 @@
 	pusch = push
 [gpg]
 	program = gpg
+	minTrustLevel = fully
 [commit]
 	gpgSign = true
 [filter "lfs"]
